@@ -75,14 +75,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getLists(View view){
+        Context context = this.getApplicationContext();
         EditText searchbox = (EditText) findViewById(R.id.search_field);
         if(searchbox.getText().length() < 3){
 
         }else{
             buildRequest();
-            new CallApi().execute(request);
-            Toast toast = Toast.makeText(this, "test", Toast.LENGTH_LONG);
-            toast.show();
+            new CallApi(context).execute();
         }
     }
 
@@ -97,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class CallApi extends AsyncTask<String, Integer, String> {
+        Context context;
+        private CallApi(Context context){
+            this.context = context.getApplicationContext();
+        }
 
         @Override
         protected String doInBackground(String... params) {
@@ -107,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
             }else {
                 return jsonFromUrl.toString();
             }
+        }
+
+        protected void onPostExecute(String result){
+            //Start new activity from here.
+            Toast toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 }
