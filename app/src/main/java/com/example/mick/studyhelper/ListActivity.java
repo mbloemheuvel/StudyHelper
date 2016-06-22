@@ -3,6 +3,8 @@ package com.example.mick.studyhelper;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,7 +33,16 @@ public class ListActivity extends AppCompatActivity {
             JSONArray list = new JSONArray(jsonArray);
             List<Set> setList = prepareSetData(list);
             ListView listView = (ListView)findViewById(R.id.set_list);
-            listView.setAdapter(new SetListAdapter(this, R.layout.list_row, setList));
+            SetListAdapter setListAdapter = new SetListAdapter(this, R.layout.list_row, setList);
+            listView.setAdapter(setListAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                   Set set = (Set) parent.getItemAtPosition(position);
+                    Toast toast= Toast.makeText(parent.getContext(), set.getTitle(), Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            });
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {
