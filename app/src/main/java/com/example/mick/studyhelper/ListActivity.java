@@ -3,7 +3,10 @@ package com.example.mick.studyhelper;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.mick.studyhelper.Util.SetListAdapter;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
@@ -32,6 +35,9 @@ public class ListActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        ListView setList = (ListView)findViewById(R.id.set_list);
+        setList.setAdapter(new SetListAdapter());
     }
 
     private List<Set> prepareSetData(JSONArray list) throws JSONException, IOException {
