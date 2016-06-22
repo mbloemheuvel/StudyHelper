@@ -30,14 +30,15 @@ public class ListActivity extends AppCompatActivity {
         try {
             JSONArray list = new JSONArray(jsonArray);
             List<Set> setList = prepareSetData(list);
+            ListView listView = (ListView)findViewById(R.id.set_list);
+            listView.setAdapter(new SetListAdapter(this, R.layout.list_row, setList));
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        ListView setList = (ListView)findViewById(R.id.set_list);
-        setList.setAdapter(new SetListAdapter());
+
     }
 
     private List<Set> prepareSetData(JSONArray list) throws JSONException, IOException {
