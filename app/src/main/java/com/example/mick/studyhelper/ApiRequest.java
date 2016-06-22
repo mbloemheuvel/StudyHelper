@@ -2,6 +2,7 @@ package com.example.mick.studyhelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -43,7 +44,8 @@ public class ApiRequest {
                 builder.append(line);
             }
             try {
-                result = new JSONArray(builder.toString());
+                JSONObject jsonResponse = new JSONObject(builder.toString());
+                result = jsonResponse.getJSONArray("sets");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
