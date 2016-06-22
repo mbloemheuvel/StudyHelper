@@ -7,7 +7,7 @@
 
     <!--<ImageView-->
         <!--android:scaleType="centerCrop"-->
-        <!--android:src="@drawable/background"-->
+        <!--android:id="@+id/background_image"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
     <!--/>-->
@@ -23,9 +23,12 @@
             android:id="@+id/search_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minEms="10"
+            android:gravity="center_horizontal"
             android:background="@drawable/edittext_rounded_corners"
             android:padding="10dp"
             android:text="Subject or topic"
+            android:singleLine="true"
             />
         <Button
             android:layout_width="wrap_content"

@@ -114,8 +114,9 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result){
             //Start new activity from here.
-            Toast toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
-            toast.show();
+            Intent intent = new Intent(MainActivity.this, ListActivity.class);
+            intent.putExtra("jsonArray", result);
+            MainActivity.this.startActivity(intent);
         }
     }
 }
