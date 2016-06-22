@@ -5,8 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -20,10 +26,22 @@ public class ListActivity extends AppCompatActivity {
         String jsonArray = intent.getStringExtra("jsonArray");
         try {
             JSONArray list = new JSONArray(jsonArray);
-            Toast toast = Toast.makeText(this, list.toString(), Toast.LENGTH_LONG);
-            toast.show();
+            List<Set> setList = prepareSetData(list);
         } catch (JSONException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    private List<Set> prepareSetData(JSONArray list) throws JSONException, IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        List<Set> setList = new ArrayList<>();
+        for(int i=0; i<list.length(); i++){
+            String set = list.getString(i);
+            Set setObject = mapper.readValue(set, Set.class);
+            setList.add(setObject);
+        }
+        return setList;
     }
 }
