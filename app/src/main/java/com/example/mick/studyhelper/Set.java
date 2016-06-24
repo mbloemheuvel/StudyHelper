@@ -116,4 +116,14 @@ public class Set implements Serializable{
     public void setLangDefinitions(String langDefinitions) {
         this.langDefinitions = langDefinitions;
     }
+
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("Title: "+ getTitle());
+        builder.append("\n Created by: " + getCreatedBy());
+        builder.append("\n Description: " + getDescription());
+        builder.append("\n Terms: " +getTermCount());
+        return builder.toString();
+
+    }
 }

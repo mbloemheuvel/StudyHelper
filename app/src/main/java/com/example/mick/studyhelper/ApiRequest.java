@@ -20,7 +20,6 @@ import javax.net.ssl.HttpsURLConnection;
 public class ApiRequest {
     public JSONArray getJSONFromUrl(String url){
         JSONArray result = null;
-        String test;
         try {
             URL request = new URL(url);
             HttpsURLConnection urlConnection = (HttpsURLConnection)request.openConnection();
