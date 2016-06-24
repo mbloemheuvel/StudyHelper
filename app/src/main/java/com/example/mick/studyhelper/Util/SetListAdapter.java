@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.mick.studyhelper.R;
-import com.example.mick.studyhelper.Set;
+import com.example.mick.studyhelper.Model.Set;
 
 import java.util.List;
 

@@ -8,8 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.mick.studyhelper.Model.Set;
+import com.example.mick.studyhelper.Util.ApiRequest;
 import com.example.mick.studyhelper.Util.Util;
 
 import org.json.JSONArray;
@@ -36,7 +37,7 @@ public class DetailsActivity extends AppCompatActivity {
             details.setText(set.toString());
         }
     }
-    
+
     private void readProperties() {
         try{
             apiUrl = Util.getProperty("apiurl_details", getApplicationContext());

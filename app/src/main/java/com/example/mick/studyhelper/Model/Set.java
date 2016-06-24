@@ -1,4 +1,4 @@
-package com.example.mick.studyhelper;
+package com.example.mick.studyhelper.Model;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;

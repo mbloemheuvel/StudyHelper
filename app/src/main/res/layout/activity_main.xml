@@ -27,7 +27,7 @@
             android:gravity="center_horizontal"
             android:background="@drawable/edittext_rounded_corners"
             android:padding="10dp"
-            android:text="Subject or topic"
+            android:hint="Subject or topic"
             android:singleLine="true"
             />
         <Button

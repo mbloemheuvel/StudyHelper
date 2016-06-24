@@ -1,4 +1,4 @@
-package com.example.mick.studyhelper;
+package com.example.mick.studyhelper.Util;
 
 import org.json.JSONArray;
 import org.json.JSONException;

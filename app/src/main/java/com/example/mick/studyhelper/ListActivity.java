@@ -1,21 +1,18 @@
 package com.example.mick.studyhelper;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.example.mick.studyhelper.Model.Set;
 import com.example.mick.studyhelper.Util.SetListAdapter;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
