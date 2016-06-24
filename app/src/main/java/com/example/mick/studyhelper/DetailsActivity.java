@@ -37,7 +37,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void readProperties() {
         try{
-            apiUrl = Util.getProperty("apiurl", getApplicationContext());
+            apiUrl = Util.getProperty("apiurl_details", getApplicationContext());
             clientId = Util.getProperty("client_id", getApplicationContext());
         }catch(Exception e){
             e.printStackTrace();
@@ -72,8 +72,10 @@ public class DetailsActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             ApiRequest apiRequest = new ApiRequest();
             JSONArray jsonFromUrl = apiRequest.getJSONFromUrl(request);
-
-            return jsonFromUrl.toString();
+            if(jsonFromUrl!=null) {
+                return jsonFromUrl.toString();
+            }
+            return null;
 
         }
     }

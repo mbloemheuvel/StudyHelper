@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void readProperties() {
         try{
-            apiUrl = Util.getProperty("apiurl", getApplicationContext());
+            apiUrl = Util.getProperty("apiurl_search", getApplicationContext());
             clientId = Util.getProperty("client_id", getApplicationContext());
         }catch(Exception e){
             e.printStackTrace();
