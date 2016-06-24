@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             ApiRequest apiRequest = new ApiRequest();
-            JSONArray jsonFromUrl = apiRequest.getJSONFromUrl(request);
+            JSONArray jsonFromUrl = apiRequest.getJSONFromUrl(request, "sets");
             if(jsonFromUrl==null){
                 return "Geen resultaat";
             }else {

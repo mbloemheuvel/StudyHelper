@@ -29,6 +29,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.mick.studyhelper.ListActivity" />
         </activity>
+        <activity android:name=".StudyActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mick.studyhelper.DetailsActivity" />
+        </activity>
+
     </application>
 
 </manifest>

@@ -18,7 +18,7 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by Mick on 21-Jun-16.
  */
 public class ApiRequest {
-    public JSONArray getJSONFromUrl(String url){
+    public JSONArray getJSONFromUrl(String url, String data){
         JSONArray result = null;
         try {
             URL request = new URL(url);
@@ -26,14 +26,14 @@ public class ApiRequest {
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            result = readStream(in);
+            result = readStream(in, data);
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
         return result;
     }
 
-    private JSONArray readStream(InputStream in) {
+    private JSONArray readStream(InputStream in, String data) {
         JSONArray result = null;
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         StringBuilder builder = new StringBuilder();
@@ -44,7 +44,7 @@ public class ApiRequest {
             }
             try {
                 JSONObject jsonResponse = new JSONObject(builder.toString());
-                result = jsonResponse.getJSONArray("sets");
+                result = jsonResponse.getJSONArray(data);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

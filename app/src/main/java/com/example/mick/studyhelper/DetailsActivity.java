@@ -20,21 +20,23 @@ public class DetailsActivity extends AppCompatActivity {
     String clientId;
     String request;
 
+    Set set;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         Intent intent = getIntent();
-        Set set = (Set) intent.getSerializableExtra("set");
-
-        readProperties();
-        buildRequest(set.getId());
-        TextView details = (TextView) findViewById(R.id.details);
-        details.setText(set.toString());
+        set = (Set) intent.getSerializableExtra("set");
+        if(set!=null) {
+            readProperties();
+            buildRequest(set.getId());
+            TextView details = (TextView) findViewById(R.id.details);
+            details.setText(set.toString());
+        }
     }
-
+    
     private void readProperties() {
         try{
             apiUrl = Util.getProperty("apiurl_details", getApplicationContext());
@@ -71,12 +73,19 @@ public class DetailsActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             ApiRequest apiRequest = new ApiRequest();
-            JSONArray jsonFromUrl = apiRequest.getJSONFromUrl(request);
+            JSONArray jsonFromUrl = apiRequest.getJSONFromUrl(request, "terms");
             if(jsonFromUrl!=null) {
                 return jsonFromUrl.toString();
             }
             return null;
 
+        }
+
+        protected void onPostExecute(String result){
+            //Start new activity from here.
+            Intent intent = new Intent(DetailsActivity.this, StudyActivity.class);
+            intent.putExtra("jsonArray", result);
+            DetailsActivity.this.startActivity(intent);
         }
     }
 }
