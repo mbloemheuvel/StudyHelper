@@ -3,11 +3,13 @@ package com.example.mick.studyhelper;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import java.io.Serializable;
+
 /**
  * Created by Mick on 22-Jun-16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Set {
+public class Set implements Serializable{
     @JsonProperty("id")
     private int id;
     @JsonProperty("url")

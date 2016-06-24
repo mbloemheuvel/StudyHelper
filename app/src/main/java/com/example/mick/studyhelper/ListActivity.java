@@ -39,8 +39,9 @@ public class ListActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                    Set set = (Set) parent.getItemAtPosition(position);
-                    Toast toast= Toast.makeText(parent.getContext(), set.getTitle(), Toast.LENGTH_LONG);
-                    toast.show();
+                    Intent detailsIntent = new Intent(ListActivity.this, DetailsActivity.class);
+                    detailsIntent.putExtra("set", set);
+                    ListActivity.this.startActivity(detailsIntent);
                 }
             });
         } catch (JSONException e) {
