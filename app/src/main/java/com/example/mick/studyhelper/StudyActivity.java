@@ -16,14 +16,18 @@ import com.example.mick.studyhelper.Model.Card;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudyActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
+public class StudyActivity extends AppCompatActivity {
 
     private boolean mShowingBack = false;
+    private Fragment front = new CardFrontFragment();
+    private Fragment back = new CardBackFragment();
+    private Fragment otherSide = back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,7 @@ public class StudyActivity extends AppCompatActivity implements FragmentManager.
 
         getFragmentManager()
                 .beginTransaction()
-                .add(R.id.container, new CardFrontFragment())
+                .add(R.id.container, front)
                 .commit();
 
 
@@ -45,6 +49,8 @@ public class StudyActivity extends AppCompatActivity implements FragmentManager.
                 JSONArray terms = new JSONArray(jsonArray);
                 try {
                     List<Card> cardList = prepareSetData(terms);
+                    TextView term = (TextView) findViewById(R.id.card_front);
+                    TextView definition = (TextView) findViewById(R.id.card_back);
 //                    TextView term = (TextView) findViewById(R.id.card_front);
 //                    term.setText(cardList.get(0).getTerm());
                     Toast toast = Toast.makeText(this, cardList.get(0).getTerm(), Toast.LENGTH_LONG);
@@ -80,15 +86,17 @@ public class StudyActivity extends AppCompatActivity implements FragmentManager.
         }
     }
 
-    public void flipCard(View view) {
-        if (mShowingBack) {
-            getFragmentManager().popBackStack();
-            return;
+    private void toggleSides(Fragment otherSide){
+        if(otherSide!=null) {
+            if (otherSide.equals(back)) {
+                otherSide = front;
+            } else {
+                otherSide = back;
+            }
         }
+    }
 
-        // Flip to the back.
-
-        mShowingBack = true;
+    public void flipCard(View view) {
 
         // Create and commit a new fragment transaction that adds the fragment for
         // the back of the card, uses custom animations, and is part of the fragment
@@ -96,7 +104,6 @@ public class StudyActivity extends AppCompatActivity implements FragmentManager.
 
         getFragmentManager()
                 .beginTransaction()
-
                 // Replace the default fragment animations with animator resources
                 // representing rotations when switching to the back of the card, as
                 // well as animator resources representing rotations when flipping
@@ -106,19 +113,14 @@ public class StudyActivity extends AppCompatActivity implements FragmentManager.
                 // Replace any fragments currently in the container view with a
                 // fragment representing the next page (indicated by the
                 // just-incremented currentPage variable).
-                .replace(R.id.container, new CardBackFragment())
+                .replace(R.id.container, otherSide)
 
-                // Add this transaction to the back stack, allowing users to press
-                // Back to get to the front of the card.
-                .addToBackStack(null)
 
                 // Commit the transaction.
                 .commit();
+        toggleSides(otherSide);
     }
-    @Override
-    public void onBackStackChanged() {
-        mShowingBack = (getFragmentManager().getBackStackEntryCount() > 0);
-    }
+
 
     private List<Card> prepareSetData(JSONArray list) throws JSONException, IOException {
         if(list!=null) {
