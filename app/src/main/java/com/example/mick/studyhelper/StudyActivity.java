@@ -40,7 +40,6 @@ public class StudyActivity extends AppCompatActivity {
                 .add(R.id.container, front)
                 .commit();
 
-
         Intent intent = getIntent();
         intent.getStringExtra("jsonArray");
         String jsonArray = intent.getStringExtra("jsonArray");
@@ -62,6 +61,7 @@ public class StudyActivity extends AppCompatActivity {
         }
     }
 
+
     /**
      * A fragment representing the front of the card.
      */
@@ -82,6 +82,7 @@ public class StudyActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             return inflater.inflate(R.layout.fragment_card_back, container, false);
         }
+
     }
 
     private void toggleSides(Fragment otherSideIn){

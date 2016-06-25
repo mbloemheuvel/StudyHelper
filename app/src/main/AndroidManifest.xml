@@ -19,12 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListActivity">
+        <activity android:name=".ListActivity"
+            android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.mick.studyhelper.MainActivity" />
         </activity>
-        <activity android:name=".DetailsActivity">
+        <activity android:name=".DetailsActivity"
+            android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.mick.studyhelper.ListActivity" />
