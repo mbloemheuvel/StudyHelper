@@ -49,8 +49,6 @@ public class StudyActivity extends AppCompatActivity {
                 JSONArray terms = new JSONArray(jsonArray);
                 try {
                     List<Card> cardList = prepareSetData(terms);
-                    TextView term = (TextView) findViewById(R.id.card_front);
-                    TextView definition = (TextView) findViewById(R.id.card_back);
 //                    TextView term = (TextView) findViewById(R.id.card_front);
 //                    term.setText(cardList.get(0).getTerm());
                     Toast toast = Toast.makeText(this, cardList.get(0).getTerm(), Toast.LENGTH_LONG);
@@ -86,9 +84,9 @@ public class StudyActivity extends AppCompatActivity {
         }
     }
 
-    private void toggleSides(Fragment otherSide){
-        if(otherSide!=null) {
-            if (otherSide.equals(back)) {
+    private void toggleSides(Fragment otherSideIn){
+        if(otherSideIn!=null) {
+            if (otherSideIn.equals(back)) {
                 otherSide = front;
             } else {
                 otherSide = back;
